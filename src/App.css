@@ -196,12 +196,14 @@
   height: fit-content;
   padding: 24px;
   max-width: calc(100vw - 40px);
+  width: 100%;
   border-radius: 16px;
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 24px;
   background-color: var(--classic-white);
+  box-sizing: border-box;
 }
 
 .welcome-card {
@@ -232,7 +234,6 @@
 }
 
 .account-card {
-  width: 720px;
   display: flex;
   gap: 40px;
   flex-direction: column;
@@ -330,6 +331,7 @@
   display: grid;
   grid-template-columns: 88px 1fr;
   align-items: center;
+  gap: 8px;
 }
 
 .tenant-info-item-title {
@@ -345,6 +347,8 @@
   font-weight: 400;
   color: var(--classic-grey-700);
   word-break: break-word;
+  overflow-wrap: break-word;
+  hyphens: auto;
 }
 
 .edit-button {
@@ -470,5 +474,203 @@
 @media (min-width: 768px) {
   .tenants-wrapper {
     grid-template-columns: 1fr 1fr;
+  }
+}
+
+/* Mobile responsive styles */
+@media (max-width: 768px) {
+  .section-card {
+    margin: 10px;
+    padding: 16px;
+    max-width: calc(100vw - 20px);
+  }
+  
+  .account-card .title-wrapper {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+  }
+  
+  .account-card .title-wrapper .title {
+    font-size: 22px;
+  }
+  
+  .tenant-info-item {
+    grid-template-columns: 1fr;
+    gap: 4px;
+    align-items: flex-start;
+  }
+  
+  .tenant-info-item-title {
+    font-size: 12px;
+    font-weight: 700;
+  }
+  
+  .tenant-info-item-value {
+    font-size: 14px;
+    line-height: 1.4;
+  }
+  
+  .tenant-title {
+    grid-template-columns: 24px 1fr;
+    gap: 8px;
+    align-items: center;
+  }
+  
+  .tenant-name {
+    font-size: 14px;
+    word-break: break-word;
+    overflow-wrap: break-word;
+  }
+  
+  .primary-button {
+    font-size: 14px;
+    padding: 8px 16px;
+  }
+  
+  .secondary-button {
+    font-size: 14px;
+    padding: 8px 16px;
+  }
+}
+
+@media (max-width: 480px) {
+  .section-card {
+    margin: 5px;
+    padding: 12px;
+    max-width: calc(100vw - 10px);
+  }
+  
+  .account-card .title-wrapper .title {
+    font-size: 20px;
+  }
+  
+  .tenant-card {
+    padding: 12px;
+  }
+  
+  .tenants-wrapper {
+    gap: 16px;
+  }
+}
+
+/* Frontegg Login Iframe Modal Styles */
+.frontegg-login-iframe-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 9999;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+.frontegg-login-iframe-container {
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+  width: 100%;
+  max-width: 500px;
+  max-height: 90vh;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.frontegg-login-iframe-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 20px;
+  border-bottom: 1px solid #e5e7eb;
+  background: #f9fafb;
+}
+
+.frontegg-login-iframe-header h3 {
+  margin: 0;
+  font-size: 18px;
+  font-weight: 600;
+  color: #1f2937;
+}
+
+.frontegg-login-iframe-close {
+  background: none;
+  border: none;
+  font-size: 24px;
+  cursor: pointer;
+  color: #6b7280;
+  padding: 0;
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 4px;
+  transition: background-color 0.2s;
+}
+
+.frontegg-login-iframe-close:hover {
+  background-color: #e5e7eb;
+  color: #374151;
+}
+
+.frontegg-login-iframe-content {
+  height: 700px;
+  position: relative;
+  overflow: hidden;
+}
+
+.frontegg-login-iframe-content iframe {
+  width: 100%;
+  height: 100%;
+  border: none;
+}
+
+.frontegg-login-iframe-loading {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: white;
+  z-index: 1;
+}
+
+.frontegg-login-iframe-loading p {
+  margin-top: 16px;
+  color: #6b7280;
+  font-size: 14px;
+}
+
+/* Responsive styles for login iframe modal */
+@media (max-width: 768px) {
+  .frontegg-login-iframe-overlay {
+    padding: 10px;
+  }
+  
+  .frontegg-login-iframe-container {
+    max-width: 95%;
+    max-height: 95vh;
+  }
+  
+  .frontegg-login-iframe-header {
+    padding: 12px 16px;
+  }
+  
+  .frontegg-login-iframe-header h3 {
+    font-size: 16px;
+  }
+  
+  .frontegg-login-iframe-content {
+    height: 600px;
   }
 }
