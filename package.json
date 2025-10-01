@@ -1,7 +1,13 @@
 {
-  "name": "react-embedded-login",
-  "version": "0.1.0",
+  "name": "frontegg-react-iframe-auth",
+  "version": "1.0.0",
   "private": true,
+  "description": "Frontegg React application with iframe authentication and callback page integration",
+  "author": "Your Name",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/yourusername/frontegg-react-iframe-auth.git"
+  },
   "dependencies": {
     "@frontegg/react": "^7.12.7",
     "@testing-library/dom": "^10.4.0",

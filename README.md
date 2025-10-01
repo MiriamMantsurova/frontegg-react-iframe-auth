@@ -1,68 +1,146 @@
-![React Embedded Login Banner](/public/assets/react-banner.png)
+# Frontegg React Iframe Authentication
 
-# React embedded login sample
+A React application demonstrating Frontegg authentication with iframe integration, callback page handling, and responsive design.
 
-This sample showcases how to seamlessly add authentication and user management to your React app using Frontegg’s embedded login method.
+## Features
 
-## This app showcases
+- 🔐 **Frontegg Authentication Integration** - Complete authentication flow with Frontegg
+- 🖼️ **Iframe Login Modal** - Embedded login form in a responsive modal
+- 🔄 **Callback Page Handling** - Automatic authentication callback processing
+- 📱 **Responsive Design** - Mobile-first responsive layout
+- 🍪 **Cookie Management** - Automatic cookie handling and cleanup
+- ⚡ **Port 3001 Configuration** - Ready to run on port 3001
 
-- Redirect users to Frontegg’s embedded login
-- Enable a fully integrated self-service portal
-- Manage and track user authentication state
-- Access and display user profile details
-- Handle account state and data with ease
-- Implement seamless account switching functionality
+## Quick Start
 
-## What you’ll need
+### 1. Configure Frontegg
 
-- [Node.js](https://nodejs.org)
-- npm (comes with Node.js)
+Update your Frontegg configuration in `src/App.tsx`:
 
-You’ll also need a Frontegg account. [Sign up for free](https://frontegg-prod.us.frontegg.com/oauth/account/sign-up) to get started.
-
-Don’t have an account yet? No worries. This project includes **sandbox credentials** so you can test it right away!
-
-
-## Get started in 3 simple steps
-
-If you don’t have a Frontegg account or prefer to use the sandbox credentials, feel free to skip to step **2**.
-
-If you're using your own credentials, follow the guidelines below.
-
-### 1. Configure your Frontegg application (if using your own account) -
-
-1. Go to [Frontegg Portal](https://portal.frontegg.com/)
-2. Get your application ID from [ENVIRONMENT] → Applications
-3. Get your Frontegg domain from the Frontegg Portal → [ENVIRONMENT] → Keys & domains
-4. This sample runs on `http://localhost:3000`. You may need to add `http://localhost:3000` under → [ENVIRONMENT] → Keys & domains → Allowed origins
-5. Update your application's credentials under `sanboxContextOptions`
-
-### 2. Clone the repository - 
-
-Run the following command:
-
-```bash
-git clone <repo>
+```typescript
+<FronteggProvider
+  contextOptions={{
+    baseUrl: "your-frontegg-domain",
+    clientId: 'your-client-id'
+  }}
+  authOptions={{
+    keepSessionAlive: true,
+  }}
+  hostedLoginBox={false}
+  customLoader={setFronteggLoading}
+>
 ```
 
-### 3. Install dependencies -
-
-Run the following command:
+### 2. Install Dependencies
 
 ```bash
 npm install
 ```
 
-### 4. Run the application -
-
-To start the application, run:
+### 3. Start Development Server
 
 ```bash
 npm start
 ```
 
-The app will be available at [http://localhost:3000](http://localhost:3000).
+The app will run on `http://localhost:3001`
 
-![React sample](/public/assets/sample-react.png)
+## Project Structure
 
-### Experience Frontegg in action!
+```
+src/
+├── components/
+│   ├── AccountInfo.tsx          # User account information display
+│   ├── CallbackPage.tsx         # Authentication callback handler
+│   ├── FronteggLoginIframe.tsx  # Iframe login modal component
+│   ├── Header.tsx               # Application header
+│   ├── Main.tsx                 # Main application component
+│   └── ...                      # Other UI components
+├── App.tsx                      # Main app with routing
+├── App.css                      # Responsive styles
+└── index.tsx                    # Application entry point
+```
+
+## Key Components
+
+### CallbackPage
+Handles authentication callbacks from Frontegg:
+- Detects iframe context
+- Closes modal and reloads parent window
+- Shows success/error states
+
+### FronteggLoginIframe
+Modal component for iframe authentication:
+- Responsive modal design
+- Manual close functionality
+- Loading states
+
+### Responsive Design
+Mobile-first CSS with breakpoints:
+- Tablet (≤768px): Stacked layout
+- Mobile (≤480px): Compact design
+- Text wrapping for long content
+
+## Configuration
+
+### Port Configuration
+The app is configured to run on port 3001. To change:
+
+```json
+// package.json
+"scripts": {
+  "start": "PORT=3001 react-scripts start"
+}
+```
+
+### Frontegg Setup
+1. Get your Frontegg domain and client ID from the Frontegg Portal
+2. Update the configuration in `src/App.tsx`
+3. Add `http://localhost:3001` to allowed origins in Frontegg
+
+## Authentication Flow
+
+1. User clicks "Sign In" → Opens iframe modal
+2. User authenticates in iframe → Redirects to callback page
+3. Callback page processes authentication → Closes modal
+4. Main app reloads → Shows authenticated state
+
+## Development
+
+### Available Scripts
+
+- `npm start` - Start development server
+- `npm build` - Build for production
+- `npm test` - Run tests
+- `npm eject` - Eject from Create React App
+
+### Customization
+
+- **Styling**: Modify `src/App.css` for custom styles
+- **Components**: Update components in `src/components/`
+- **Routing**: Add routes in `src/App.tsx`
+- **Configuration**: Update Frontegg settings in `src/App.tsx`
+
+## Browser Support
+
+- Chrome (latest)
+- Firefox (latest)
+- Safari (latest)
+- Edge (latest)
+
+## License
+
+MIT License - feel free to use this project as a starting point for your own applications.
+
+## Contributing
+
+1. Fork the repository
+2. Create a feature branch
+3. Make your changes
+4. Submit a pull request
+
+## Support
+
+For issues and questions:
+- Check the [Frontegg Documentation](https://docs.frontegg.com/)
+- Open an issue in this repository
